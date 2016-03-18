@@ -1,7 +1,7 @@
 {
-  "name": "kirarinext",
+  "name": "breakfast",
   "version": "1.0.0",
-  "description": "Next generation web client for kirarich.com",
+  "description": "A modern web application boilerplate",
   "main": "index.js",
   "scripts": {
     "build:js": "webpack",
