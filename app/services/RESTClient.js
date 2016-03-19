@@ -6,7 +6,10 @@ MethodType.initEnum(['GET', 'PUT', 'POST', 'DELETE'])
 
 export class RESTClient {
   constructor() {
-    this.endpoints = {}
+    this._endpoints = {}
+  }
+  get endpoints() {
+    return Object.freeze(this._endpoints)
   }
   request(url, method, query={}, params={}) {
     // Type Checking 
@@ -30,7 +33,7 @@ export class RESTClient {
     if(name === undefined || url === undefined)
       throw TypeError("defineEndpoint must be given 2 arguments: url, name")
     
-    this.endpoints[name] = (method) => {
+    this._endpoints[name] = (method) => {
       return this.request(url, method)
     }
   }

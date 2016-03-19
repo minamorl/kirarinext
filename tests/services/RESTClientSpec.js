@@ -39,14 +39,24 @@ describe("RESTClient", () => {
         })
     })
   })
-  describe("defineEndpoint method", () => {
-    it("defines endpoint", () => {
+  describe("endpoints", () => {
+    it("can be defined by defineEndpoint", () => {
       const inserted = {
         name: "example",
         url: "http://localhost:9876/"
       }
       client.defineEndpoint(inserted.name, inserted.url)
       expect(typeof client.endpoints[inserted.name]).toBe('function')
+    })
+    it("cannot be modifiable by user hands", () => {
+      expect(() => {
+        // Make some changes. This operation adds a function.
+        client.endpoints["not applied"] = () => {}
+      }).toThrowError(TypeError)
+    })
+    it("can be readable as a frozen object", () => {
+      const obj = client.endpoint
+      expect(Object.isFrozen(obj)).toBe(true)
     })
   })
 })
