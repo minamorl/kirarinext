@@ -14,6 +14,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js', // Use pollyfils
       'tests/**/*.js'
     ],
 
@@ -27,7 +28,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       // 'app/**/*.js': ['babel'],
-      'tests/**/*.js': ['webpack']
+      'tests/**/*.js': ['webpack', 'sourcemap']
     },
 
     webpack: {
@@ -37,10 +38,9 @@ module.exports = function(config) {
       module: {
         loaders: [
             { test: /\.jsx?$/, loader: 'babel-loader' ,
-
-                    query: {
-                      presets: ['es2015']
-                    }
+              query: {
+                presets: ['es2015', 'stage-0']
+              }
             }
         ],
       },
