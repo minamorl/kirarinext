@@ -1,4 +1,5 @@
-import {RESTClient, MethodType} from "../../app/services/RESTClient.js"
+import { RESTClient } from "../../app/services/RESTClient.js"
+import MethodType from "../../app/services/MethodType.js"
 
 describe("RESTClient", () => {
   let client;

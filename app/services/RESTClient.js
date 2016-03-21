@@ -1,8 +1,5 @@
 import request from 'superagent'
-import { Enum } from 'enumify'
-
-export class MethodType extends Enum {}
-MethodType.initEnum(['GET', 'PUT', 'POST', 'DELETE'])
+import MethodType from './MethodType'
 
 export class RESTClient {
   constructor() {
