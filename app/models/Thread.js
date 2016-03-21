@@ -1,8 +1,9 @@
+import Comment from "./Comment"
+
 export default class Thread {
-  constructor (name, count=0, posts=[]) {
+  constructor (name, count=0, comments=[]) {
     this._name = name
-    this._count = count
-    this.posts = posts
+    this._comments = comments
   }
   get name () {
     return Object.freeze(this._name)
@@ -13,7 +14,7 @@ export default class Thread {
     this._name = name
   }
   get count () {
-    return Object.freeze(this._count)
+    return Object.freeze(this._comments.length)
   }
   static isValidName (value) {
     if (!(typeof value === "string" || value instanceof String))
@@ -21,5 +22,13 @@ export default class Thread {
     if (value === "")
       return false
     return true
+  }
+  get comments () {
+    return Object.freeze(this._comments)
+  }
+  addComment (comment) {
+    if (comment.isValid) {
+      this._comments.push(comment)
+    }
   }
 }

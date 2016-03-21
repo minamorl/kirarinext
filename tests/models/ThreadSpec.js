@@ -1,4 +1,6 @@
-import Thread from "../../app/models/Thread.js"
+import Thread from "../../app/models/Thread"
+
+import Comment from "../../app/models/Comment"
 
 describe("Thread", () => {
   let thread
@@ -17,5 +19,21 @@ describe("Thread", () => {
     expect(Thread.isValidName(undefined)).toBe(false)
     expect(Thread.isValidName("")).toBe(false)
     expect(Thread.isValidName("shouldBePass")).toBe(true)
+  })
+  it("can contain a valid Comment object", () => {
+    const comment = new Comment({
+      author: {
+        name: "Uncle Sam"
+      },
+      body: "This is a test",
+      thread: {
+        name: "Dummy Thread"
+      }
+    })
+    expect(comment.isValid).toBe(true)
+
+    expect(thread.count).toBe(0)
+    thread.addComment(comment)
+    expect(thread.count).toBe(1)
   })
 })

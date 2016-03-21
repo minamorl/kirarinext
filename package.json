@@ -22,6 +22,7 @@
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
     "js-cookie": "^2.1.0",
+    "js-schema": "^1.0.1",
     "karma": "^0.13.22",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^0.2.2",
@@ -35,7 +36,6 @@
     "react-dom": "^0.14.7",
     "request": "^2.69.0",
     "superagent": "^1.8.1",
-    "superagent-promise-plugin": "^2.1.0",
     "webpack": "^1.12.14"
   }
 }
