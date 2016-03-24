@@ -14,7 +14,7 @@ export class RESTClient {
       throw TypeError("url must be instance of String")
     }
     if (!(method instanceof MethodType)) {
-      throw TypeError("method must be instance of methodType")
+      throw TypeError("method must be instance of MethodType")
     }
     return new Promise((resolve, reject) => {
       request(method.name, url)
