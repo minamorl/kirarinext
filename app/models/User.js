@@ -2,7 +2,7 @@ import Cookies from "js-cookie"
 
 export default class User {
   constructor() {
-    this._isLoggedIn = false
+    this[Symbol.for("isLoggedIn")] = false
   }
   login({username, password}) {
     if(typeof username !== "string")
@@ -20,18 +20,18 @@ export default class User {
       Cookies.set("auth", "authed")
       Cookies.set("username", username)
       // set status
-      this._isLoggedIn = true
+      this[Symbol.for("isLoggedIn")] = true
     }).catch(() => {
       // do nothing. just prevend from error.
     })
   }
   logout() {
-    this._isLoggedIn = false
+    this[Symbol.for("isLoggedIn")] = false
     // destroy cookies.
     Cookies.remove("auth")
   }
   get isLoggedIn() {
-    return this._isLoggedIn
+    return this[Symbol.for("isLoggedIn")]
   }
   get username() {
     if (this.isLoggedIn)
