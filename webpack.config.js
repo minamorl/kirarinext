@@ -18,5 +18,12 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    proxy: {
+      "/api/*": {
+        target: "http://localhost:9010/"
+      }
+    }
+  },
   devtool: "#inline-source-map"
 }
