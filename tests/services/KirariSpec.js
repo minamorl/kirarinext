@@ -6,14 +6,4 @@ describe("Kirari", () => {
   beforeEach(() => {
     client = new Kirari("api/")
   })
-  describe("fetchThread", () => {
-    it("returns Thread object" , () => {
-      const thread = client.fetchThread("thread")
-      expect(thread instanceof Thread).toBe(true)
-    })
-    it("must contains comments", () => {
-      const thread = client.fetchThread("thread")
-      expect(thread.count).toBeDefined()
-    })
-  })
 })
