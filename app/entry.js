@@ -3,7 +3,7 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Thread from './views/ThreadComponent'
+import Thread from './views/Thread'
 
 /* initialize react application */
 const DEFAULT_THREAD = "$DEFAULT"

@@ -1,7 +1,5 @@
 import React, {Component} from "react"
 
-import Comment from "../models/Comment.js"
-import Thread from "../models/Thread"
 import Kirari from "../services/Kirari"
 
 const CommentComponent = (props) => {
@@ -42,11 +40,10 @@ export default class ThreadComponent extends Component {
     }
   }
   componentDidMount () {
-    this.client.fetchThread(this.props.name).then((thread) => {
+    this.client.fetchThread(this.props.name).then((res) => {
+      const comments = res["results"]
       this.setState({
-        name: thread.name,
-        count: thread.count,
-        comments: thread.comments
+        comments: comments
       })
     })
   }
