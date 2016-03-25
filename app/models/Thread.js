@@ -27,8 +27,8 @@ export default class Thread {
     return Object.freeze(this[Symbol.for("comments")])
   }
   addComment (comment) {
-    if (comment.isValid) {
-      this[Symbol.for("comments")].push(comment)
-    }
+    if (!comment.isValid)
+      throw TypeError("Object \"comment\" is invalid.")
+    this[Symbol.for("comments")].push(comment)
   }
 }
