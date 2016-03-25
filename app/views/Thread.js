@@ -22,8 +22,16 @@ const ThreadList = (props) => {
   </ul>
 }
 const CommentForm = (props) => {
-  return <form>
-    <textarea />
+  const post = (e) => {
+    let client = new Kirari()
+    const body = document.getElementById("comment-form").value
+    client.comment(body).then(() => {
+      props.refresh()
+    })
+    e.preventDefault()
+  }
+  return <form onSubmit={post}>
+    <textarea id="comment-form" />
     <button type="submit">submit</button>
   </form>
 }
@@ -32,16 +40,19 @@ export default class ThreadComponent extends Component {
     super(props)
     this.client = new Kirari()
     this.render = this.render.bind(this)
+    this.refresh = this.refresh.bind(this)
     this.props = props
     this.state = {
       name: this.props.name,
-      count: 0,
       comments: []
     }
   }
   componentDidMount () {
+    this.refresh()
+  }
+  refresh() {
     this.client.fetchThread(this.props.name).then((res) => {
-      const comments = res["results"]
+      const comments = res.body["results"]
       this.setState({
         comments: comments
       })
@@ -49,9 +60,9 @@ export default class ThreadComponent extends Component {
   }
   render() {
     return <div>
-      <ThreadHeader name={this.state.name} count={this.state.count} />
+      <ThreadHeader name={this.state.name} count={this.state.comments.length} />
       <ThreadList comments={this.state.comments} />
-      <CommentForm name={this.state.name} />
+      <CommentForm name={this.state.name} refresh={this.refresh}/>
     </div>
   }
 }

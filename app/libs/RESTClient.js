@@ -3,10 +3,6 @@ import MethodType from './MethodType'
 
 export default class RESTClient {
   constructor() {
-    this[Symbol.for("endpoints")] = {}
-  }
-  get endpoints() {
-    return Object.freeze(this[Symbol.for("endpoints")])
   }
   request(url, method, query={}, params={}) {
     // Type Checking 
@@ -25,13 +21,5 @@ export default class RESTClient {
           resolve(res)
         })
     })
-  }
-  defineEndpoint({name, url}) {
-    if(name === undefined || url === undefined)
-      throw TypeError("defineEndpoint must be given 2 arguments: url, name")
-    
-    this[Symbol.for("endpoints")][name] = (method) => {
-      return this.request(url, method)
-    }
   }
 }

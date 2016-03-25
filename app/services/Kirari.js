@@ -8,4 +8,9 @@ export default class Kirari {
   fetchThread(threadName) {
     return this.client.request("/api/thread.json", MethodType.GET, {q: threadName}, {})
   }
+  comment(body) {
+    return this.client.request("/api/comment.json", MethodType.POST, {}, {
+      body: body
+    })
+  }
 }
