@@ -5,6 +5,11 @@ import ReactDOM from 'react-dom'
 
 import Thread from './views/Thread'
 
+
+/* apply style settings */
+import 'normalize.css/normalize.css'
+import '../css/style.sass'
+
 /* initialize react application */
 const DEFAULT_THREAD = "$DEFAULT"
 const init = () => {
