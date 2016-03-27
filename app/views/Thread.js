@@ -5,6 +5,7 @@ import Kirari from "../services/Kirari"
 const CommentComponent = (props) => {
   return <li>
     <div className="comment-body">{props.comment.body}</div>
+    <div className="comment-id">#{props.comment.id}</div>
     <div className="comment-author-name">{props.comment.author.name}</div>
   </li>
 }
@@ -31,7 +32,7 @@ const CommentForm = (props) => {
     e.preventDefault()
   }
   return <form onSubmit={post}>
-    <textarea id="comment-form" />
+    <textarea id="comment-form" maxlength="1000" />
     <button type="submit">submit</button>
   </form>
 }
