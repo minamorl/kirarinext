@@ -4,10 +4,11 @@
   "description": "Next-generation official web client for kirarich.com",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all build:html webpack",
+    "start": "npm-run-all build:html webpack-watch",
     "build:html": "cp static/* dist/",
+    "build:webpack": "webpack",
     "build": "npm-run-all --parallel build:*",
-    "webpack": "webpack-dev-server --content-base dist/",
+    "webpack-watch": "webpack-dev-server --content-base dist/",
     "test": "karma start"
   },
   "author": "",
