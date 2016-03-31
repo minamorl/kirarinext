@@ -32,7 +32,7 @@ const CommentForm = (props) => {
     e.preventDefault()
   }
   return <form onSubmit={post}>
-    <textarea id="comment-form" maxlength="1000" />
+    <textarea id="comment-form" maxLength="1000" />
     <button type="submit">submit</button>
   </form>
 }
@@ -49,15 +49,27 @@ export default class ThreadComponent extends Component {
     }
   }
   componentDidMount () {
-    this.refresh()
+    this.refresh(false)
+    setInterval(this.refresh, 2000)
   }
-  refresh() {
-    this.client.fetchThread(this.props.name).then((res) => {
-      const comments = res.body["results"]
-      this.setState({
-        comments: comments
+  refresh(diffonly=true) {
+    if(diffonly) {
+      const last_fetched_id = this.state.comments[this.state.comments.length - 1]["id"]
+      this.client.fetchThread(this.props.name, last_fetched_id).then((res) => {
+        const comments = res.body["results"]
+        console.info(comments)
+        this.setState({
+          comments: [...this.state.comments, ...comments]
+        })
       })
-    })
+    } else {
+      this.client.fetchThread(this.props.name).then((res) => {
+        const comments = res.body["results"]
+        this.setState({
+          comments: comments
+        })
+      })
+    }
   }
   render() {
     return <div>

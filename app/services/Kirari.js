@@ -5,11 +5,15 @@ export default class Kirari {
   constructor () {
     this.client = new RESTClient()
   }
-  fetchThread(threadName) {
-    return this.client.request("/api/thread.json", MethodType.GET, {q: threadName}, {})
+  fetchThread(threadName, from=null) {
+    if(from !== null) {
+      return this.client.request("/api/comments.json", MethodType.GET
+        , {q: threadName, from: from}, {})
+    }
+    return this.client.request("/api/comments.json", MethodType.GET, {q: threadName}, {})
   }
   comment(body) {
-    return this.client.request("/api/comment.json", MethodType.POST, {}, {
+    return this.client.request("/api/comments.json", MethodType.POST, {}, {
       body: body
     })
   }
