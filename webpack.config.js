@@ -1,5 +1,3 @@
-var webpack = require('webpack');
-
 module.exports = {
   entry: './app/entry.js',
   output: {
@@ -35,8 +33,5 @@ module.exports = {
       }
     }
   },
-  devtool: "#inline-source-map",
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
-  ]
+  devtool: "#inline-source-map"
 }

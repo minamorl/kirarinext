@@ -26,6 +26,7 @@ const CommentForm = (props) => {
   const post = (e) => {
     let client = new Kirari()
     const body = document.getElementById("comment-form").value
+    document.getElementById("comment-form").value = ""
     client.comment(body).then(() => {
       props.refresh()
     })
