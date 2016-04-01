@@ -1,3 +1,6 @@
+var webpack = require('webpack'); 
+var PROD = (process.env.NODE_ENV === 'production')
+
 module.exports = {
   entry: './app/entry.js',
   output: {
@@ -33,5 +36,8 @@ module.exports = {
       }
     }
   },
+  plugins: PROD ? [
+    new webpack.optimize.UglifyJsPlugin({minimize: true})
+  ] : [],
   devtool: "#inline-source-map"
 }

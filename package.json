@@ -9,6 +9,7 @@
     "build:webpack": "webpack",
     "build": "npm-run-all --parallel build:*",
     "webpack-watch": "webpack-dev-server --content-base dist/",
+    "deploy": "NODE_ENV=production npm run build",
     "test": "karma start"
   },
   "author": "",
