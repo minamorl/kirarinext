@@ -47,29 +47,33 @@ export default class ThreadComponent extends Component {
       name: this.props.name,
       comments: []
     }
+    this.sem = require("semaphore")(1)
   }
   componentDidMount () {
     this.refresh(false)
     setInterval(this.refresh, 2000)
   }
   refresh(diffonly=true) {
-    if(diffonly) {
-      const last_fetched_id = this.state.comments[this.state.comments.length - 1]["id"]
-      this.client.fetchThread(this.props.name, last_fetched_id).then((res) => {
-        const comments = res.body["results"]
-        console.info(comments)
-        this.setState({
-          comments: [...this.state.comments, ...comments]
+    this.sem.take(() => {
+      if(diffonly) {
+        const last_fetched_id = this.state.comments[this.state.comments.length - 1]["id"]
+        this.client.fetchThread(this.props.name, last_fetched_id).then((res) => {
+          const comments = res.body["results"]
+          this.setState({
+            comments: [...this.state.comments, ...comments]
+          })
+          this.sem.leave()
         })
-      })
-    } else {
-      this.client.fetchThread(this.props.name).then((res) => {
-        const comments = res.body["results"]
-        this.setState({
-          comments: comments
+      } else {
+        this.client.fetchThread(this.props.name).then((res) => {
+          const comments = res.body["results"]
+          this.setState({
+            comments: comments
+          })
+          this.sem.leave()
         })
-      })
-    }
+      }
+    })
   }
   render() {
     return <div>
