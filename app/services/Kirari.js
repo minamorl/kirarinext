@@ -7,13 +7,13 @@ export default class Kirari {
   }
   fetchThread(threadName, from=null) {
     if(from !== null) {
-      return this.client.request("/api/comments.json", MethodType.GET
+      return this.client.request("/api/comments", MethodType.GET
         , {q: threadName, from: from}, {})
     }
-    return this.client.request("/api/comments.json", MethodType.GET, {q: threadName}, {})
+    return this.client.request("/api/comments", MethodType.GET, {q: threadName}, {})
   }
   comment(body) {
-    return this.client.request("/api/comments.json", MethodType.POST, {}, {
+    return this.client.request("/api/comments", MethodType.POST, {}, {
       body: body
     })
   }

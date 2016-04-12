@@ -5,8 +5,10 @@ import Kirari from "../services/Kirari"
 const CommentComponent = (props) => {
   return <li>
     <div className="comment-body">{props.comment.body}</div>
-    <div className="comment-id">#{props.comment.id}</div>
-    <div className="comment-author-name">{props.comment.author.name}</div>
+    <div className="comment-footer">
+      <div className="comment-id">#{props.comment.id}</div>
+      <div className="comment-author-name">{props.comment.author.name}</div>
+    </div>
   </li>
 }
 const ThreadHeader = (props) => {

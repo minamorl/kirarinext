@@ -11,7 +11,7 @@ $header-height: 36px
 body
   background-color: $main-background-color
 #Application
-  div > div:first-child
+  & > div > div:first-child
     position: fixed
     top: 0
     width: 100%
@@ -45,16 +45,20 @@ body
         color: rgb(0, 0, 0)
         padding: 0 0 4px 0
         font-size: 18px
-      .comment-id
-        color: rgb(228, 129, 0)
-        display: inline-block
-        &:after
-          content: "\0020-\0020"
-        font-size: small
-      .comment-author-name
-        color: rgb(102, 101, 101)
-        display: inline-block
-        font-size: small
+      .comment-footer
+        *
+          display: inline-block
+          font-size: 12px
+        .comment-id
+          color: rgb(228, 129, 0)
+          &:after
+            content: "\0020-\0020"
+        .comment-author-name
+          color: rgb(102, 101, 101)
+        .comment-author-id
+          text-align: right
+          &:before
+            content: "#"
   form
     @include centering(600px)
     *
@@ -64,6 +68,7 @@ body
       height: 100px
     textarea
       width: 80%
+      resize: none
       vertical-align: bottom
       border: 1px solid lighten($form-color, 18%)
       &:hover
