@@ -4,10 +4,15 @@ import Kirari from "../services/Kirari"
 
 const CommentComponent = (props) => {
   return <li>
-    <div className="comment-body">{props.comment.body}</div>
-    <div className="comment-footer">
-      <div className="comment-id">#{props.comment.id}</div>
-      <div className="comment-author-name">{props.comment.author.name}</div>
+    <div className="author-image">
+      <img src="./img/57a0e8e244c15cd842f58fce0edf584b_400x400.jpeg" alt="Author image" />
+    </div>
+    <div className="comment">
+      <div className="comment-body">{props.comment.body}</div>
+      <div className="comment-footer">
+        <div className="comment-id">#{props.comment.id}</div>
+        <div className="comment-author-name">{props.comment.author.name}</div>
+      </div>
     </div>
   </li>
 }

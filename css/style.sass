@@ -36,29 +36,46 @@ body
     list-style: none
     padding: 0
     li
-      background-color: white
-      margin: 10px 0
-      padding: 14px 12px
-      box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.06);
-      word-wrap: break-word
-      .comment-body
-        color: rgb(0, 0, 0)
-        padding: 0 0 4px 0
-        font-size: 18px
-      .comment-footer
-        *
-          display: inline-block
-          font-size: 12px
-        .comment-id
-          color: rgb(228, 129, 0)
-          &:after
-            content: "\0020-\0020"
-        .comment-author-name
-          color: rgb(102, 101, 101)
-        .comment-author-id
-          text-align: right
-          &:before
-            content: "#"
+      margin: 14px 0
+      display: flex
+      .author-image
+        margin: 0 20px 0 0
+        box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.06);
+        padding: 2px
+        width: 84px
+        height: 84px
+        img
+          border-radius: 2px
+          width: 80px
+          height: 80px
+      .comment  
+        flex: 1
+        min-width: 0
+        background-color: white
+        padding: 14px 12px
+        box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.06);
+        word-wrap: break-word
+        margin-right: auto
+        .comment-body
+          color: rgb(0, 0, 0)
+          padding: 0 0 4px 0
+          font-size: 18px
+          height: calc(100% - 16px)
+        .comment-footer
+          height: 14px
+          *
+            display: inline-block
+            font-size: 12px
+          .comment-id
+            color: rgb(228, 129, 0)
+            &:after
+              content: "\0020-\0020"
+          .comment-author-name
+            color: rgb(102, 101, 101)
+          .comment-author-id
+            text-align: right
+            &:before
+              content: "#"
   form
     @include centering(600px)
     padding: 2px 2px
