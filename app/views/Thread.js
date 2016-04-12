@@ -73,6 +73,7 @@ export default class ThreadComponent extends Component {
           this.setState({
             comments: comments
           })
+          window.scrollTo(0, document.body.scrollHeight)
           this.sem.leave()
         })
       }
