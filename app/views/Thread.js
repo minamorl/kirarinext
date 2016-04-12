@@ -11,7 +11,7 @@ const CommentComponent = (props) => {
 }
 const ThreadHeader = (props) => {
   return <div>
-    <h1>{props.name}</h1>
+    <h1>kirarich@next</h1>
     <p> There are {props.count} comments in this thread. </p>
   </div>
 }
