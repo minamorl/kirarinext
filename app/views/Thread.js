@@ -64,7 +64,9 @@ export default class ThreadComponent extends Component {
   refresh(diffonly=true) {
     this.sem.take(() => {
       if(diffonly) {
-        const last_fetched_id = this.state.comments[this.state.comments.length - 1]["id"]
+        let last_fetched_id = -1
+        if(this.state.comments.length != 0)
+          last_fetched_id = this.state.comments[this.state.comments.length - 1]["id"] 
         this.client.fetchThread(this.props.name, last_fetched_id).then((res) => {
           const comments = res.body["results"]
           this.setState({
