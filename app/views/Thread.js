@@ -5,7 +5,7 @@ import Kirari from "../services/Kirari"
 const CommentComponent = (props) => {
   return <li>
     <div className="author-image">
-      <img src="./img/57a0e8e244c15cd842f58fce0edf584b_400x400.jpeg" alt="Author image" />
+      <img src={props.comment.author.avatar} alt="Author image" />
     </div>
     <div className="comment">
       <div className="comment-body">{props.comment.body}</div>
