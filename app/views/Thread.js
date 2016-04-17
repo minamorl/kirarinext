@@ -12,6 +12,7 @@ const CommentComponent = (props) => {
       <div className="comment-footer">
         <div className="comment-id">#{props.comment.id}</div>
         <div className="comment-author-name">{props.comment.author.name}</div>
+        <div className="comment-created-at">@{props.comment.created_at}</div>
       </div>
     </div>
   </li>
