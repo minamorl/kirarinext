@@ -39,5 +39,5 @@ module.exports = {
   plugins: PROD ? [
     new webpack.optimize.UglifyJsPlugin({minimize: true})
   ] : [],
-  devtool: "#inline-source-map"
+  devtool: PROD ? "" : "#inline-source-map"
 }
