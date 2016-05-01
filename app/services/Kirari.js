@@ -1,20 +1,32 @@
-import RESTClient from "../libs/RESTClient"
-import MethodType from "../libs/MethodType"
+import 'whatwg-fetch'
+import qs from 'qs'
+
 
 export default class Kirari {
   constructor () {
-    this.client = new RESTClient()
   }
   fetchThread(threadName, from=null) {
     if(from !== null) {
-      return this.client.request("/api/comments", MethodType.GET
-        , {q: threadName, from: from}, {})
+      return fetch("/api/comments?" + qs.stringify({q: threadName, from: from})).then((response) => {
+        return response.json()
+      })
     }
-    return this.client.request("/api/comments", MethodType.GET, {q: threadName}, {})
+    return fetch("/api/comments?" + qs.stringify({q: threadName})).then((response) => {
+      return response.json()
+    })
   }
   comment(body) {
-    return this.client.request("/api/comments", MethodType.POST, {}, {
-      body: body
+    return fetch("/api/comments", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        body: body
+      })
+    }).then((response) => {
+      return response.json()
     })
   }
 }
