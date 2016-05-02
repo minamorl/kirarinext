@@ -8,10 +8,15 @@ $header-height: 36px
   max-width: $width
   margin: auto
 
+@mixin box-shadow()
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.06)
+
+
 body
   background-color: $main-background-color
 #Application
   & > div > div:first-child
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.10)
     z-index: 2
     position: fixed
     top: 0
