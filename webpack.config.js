@@ -1,11 +1,12 @@
 var webpack = require('webpack'); 
+var AssetsPlugin = require('assets-webpack-plugin')
 var PROD = (process.env.NODE_ENV === 'production')
 
 module.exports = {
   entry: './app/entry.js',
   output: {
     path: __dirname + "/dist",
-    filename: 'bundle.js'
+    filename: PROD ? 'bundle.[hash].js' : 'bundle.js'
   },
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
@@ -37,7 +38,8 @@ module.exports = {
     }
   },
   plugins: PROD ? [
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
+    new webpack.optimize.UglifyJsPlugin({minimize: true}),
+    new AssetsPlugin()
   ] : [],
   devtool: PROD ? "" : "#inline-source-map"
 }

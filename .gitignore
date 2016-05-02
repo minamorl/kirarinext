@@ -2,3 +2,5 @@ node_modules/
 dist/
 __pycache__/
 .plans.py
+webpack-assets.json
+static/

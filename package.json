@@ -4,11 +4,12 @@
   "description": "Next-generation official web client for kirarich.com",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all clean build:html webpack-watch",
+    "start": "npm-run-all clean build:index build:static webpack-watch",
     "clean": "rm -r dist && mkdirp dist",
-    "build:html": "cp static/* dist/ -r",
-    "build:webpack": "webpack",
-    "build": "npm-run-all --parallel build:*",
+    "build:static": "cp static/* dist/ -r",
+    "build:index": "node ./scripts/compile-jade.js",
+    "webpack": "webpack",
+    "build": "npm-run-all webpack --parallel build:*",
     "webpack-watch": "webpack-dev-server --content-base dist/",
     "deploy": "NODE_ENV=production npm run build",
     "test": "karma start"
@@ -16,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "assets-webpack-plugin": "^3.4.0",
     "babel-core": "^6.7.7",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.7.2",
@@ -40,6 +42,7 @@
     "normalize.css": "^4.1.1",
     "npm-run-all": "^1.8.0",
     "phantomjs-prebuilt": "^2.1.7",
+    "pug": "^2.0.0-alpha6",
     "qs": "^6.1.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
