@@ -4,7 +4,9 @@ import Cookies from 'js-cookie'
 
 
 const get = (endpoint, json) => {
-  return fetch(endpoint + "?" + qs.stringify(json)).then((response) => {
+  return fetch(endpoint + "?" + qs.stringify(json), {
+    credentials: 'same-origin',
+  }).then((response) => {
     return response.json()
   })
 }
