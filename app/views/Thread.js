@@ -51,10 +51,14 @@ export default class ThreadComponent extends Component {
       comments: []
     }
     this.sem = require("semaphore")(1)
+    this.interval_id = null
   }
   componentDidMount () {
     this.refresh(false)
-    setInterval(this.refresh, 2000)
+    this.interval_id = setInterval(this.refresh, 2000)
+  }
+  componentWillUnmount () {
+    window.clearInterval(this.interval_id)
   }
   refresh(diffonly=true) {
     this.sem.take(() => {

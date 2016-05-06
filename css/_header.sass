@@ -13,9 +13,9 @@ header
   *
     @include centering(600px)
     display: inline-block
-    padding: 6px 0
     vertical-align: text-bottom;
   h1
+    padding: 6px 0
     font-size: 20px
     flex: 1
   #login-button
@@ -27,5 +27,14 @@ header
     text-decoration: none
     &:hover
       color: darken($header-color, 10%)
+  .icon-button
+    height: 100%
+    width: auto
+    img
+      border-radius: 2px
+      padding: 2px
+      height: calc(100% - 4px)
+      width: auto
+
 header + * 
   margin-top: $header-height + 4px
