@@ -1,0 +1,31 @@
+header
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.10)
+  z-index: 2
+  position: fixed
+  top: 0
+  width: 100%
+  height: $header-height
+  overflow: hidden
+  background-color: $header-background-color
+  color: $header-color
+  font-family: Quicksand, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  display: flex
+  *
+    @include centering(600px)
+    display: inline-block
+    padding: 6px 0
+    vertical-align: text-bottom;
+  h1
+    font-size: 20px
+    flex: 1
+  #login-button
+    font-size: 11px
+  a
+    margin: inherit
+    padding: 0
+    color: inherit
+    text-decoration: none
+    &:hover
+      color: darken($header-color, 10%)
+header + * 
+  margin-top: $header-height + 4px
