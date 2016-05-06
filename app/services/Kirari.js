@@ -28,8 +28,14 @@ export default class Kirari {
     this.logged_in = false
     this.user = null
     if(Cookies.get('user') !== undefined) {
-      this.logged_in = true
-      this.user = JSON.parse(Cookies.get('user'))
+      try {
+        this.user = JSON.parse(Cookies.get('user'))
+        this.logged_in = true
+      } catch (e) {
+        this.user = null
+        this.logged_in = false
+        Cookies.remove('user')
+      }
     }
     return instance
   }
@@ -45,7 +51,7 @@ export default class Kirari {
   signin(username, password) {
     return post("/api/users", {username: username, password: password})
       .then((res) => {
-        if(res.auth === "False") {
+        if(res.results.auth === "False") {
           return res
         }
         this.user = res.results.user
