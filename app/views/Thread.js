@@ -17,12 +17,6 @@ const CommentComponent = (props) => {
     </div>
   </li>
 }
-const ThreadHeader = (props) => {
-  return <div>
-    <h1>kirarich@next</h1>
-    <p> There are {props.count} comments in this thread. </p>
-  </div>
-}
 const ThreadList = (props) => {
   return <ul className="thread">
     {props.comments.map((comment, index) => {
@@ -40,7 +34,7 @@ const CommentForm = (props) => {
     })
     e.preventDefault()
   }
-  return <form onSubmit={post}>
+  return <form id="comment" onSubmit={post}>
     <textarea id="comment-form" maxLength="1000" />
     <button type="submit">submit</button>
   </form>
@@ -89,7 +83,6 @@ export default class ThreadComponent extends Component {
   }
   render() {
     return <div>
-      <ThreadHeader name={this.state.name} count={this.state.comments.length} />
       <ThreadList comments={this.state.comments} />
       <CommentForm name={this.state.name} refresh={this.refresh}/>
     </div>
