@@ -25,7 +25,7 @@ const rerender = (obj) => {
 const routing = () => {
   const current = location.hash
   if (current === "#signin") rerender(<Signin />)
-  if (current === "#settings") rerender(<AccountSettings />)
+  else if (current === "#settings") rerender(<AccountSettings />)
   else
     rerender(<Thread name={DEFAULT_THREAD}/>)
 }
