@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom'
 import Page from './views/Page'
 import Thread from './views/Thread'
 import Signin from './views/Signin'
+import AccountSettings from './views/Settings'
 
 
 /* apply stylesheets  */
@@ -24,6 +25,7 @@ const rerender = (obj) => {
 const routing = () => {
   const current = location.hash
   if (current === "#signin") rerender(<Signin />)
+  if (current === "#settings") rerender(<AccountSettings />)
   else
     rerender(<Thread name={DEFAULT_THREAD}/>)
 }

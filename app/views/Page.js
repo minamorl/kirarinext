@@ -24,7 +24,6 @@ const Header = (props) => {
     return false
   }
   const settings = () => {
-    return false
   }
   const item = client.logged_in ? <IconButton /> : <LoginButton/>
   let dropdown_visibility = false
@@ -35,6 +34,7 @@ const Header = (props) => {
     </div>
     <Menu className="button-menu">
       <MenuButton label="ログアウト" href="#signout" onClick={signout}/>
+      <MenuButton label="アカウント設定" href="#settings" onClick={settings}/>
     </Menu>
   </header>
 }

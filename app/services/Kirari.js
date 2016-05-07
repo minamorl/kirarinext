@@ -68,4 +68,10 @@ export default class Kirari {
     Cookies.remove('user')
     return get("/api/signout")
   }
+  update_icon() {
+    return post("/api/account_settings", { update_icon: true } ).then((res) => {
+        this.user = res.results.user
+        Cookies.set("user", JSON.stringify(this.user), { expires: 7 })
+    })
+  }
 }
