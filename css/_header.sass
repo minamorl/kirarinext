@@ -5,36 +5,40 @@ header
   top: 0
   width: 100%
   height: $header-height
-  overflow: hidden
   background-color: $header-background-color
   color: $header-color
   font-family: Quicksand, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
-  display: flex
-  *
+  div:first-child
     @include centering(600px)
-    display: inline-block
-    vertical-align: text-bottom;
-  h1
-    padding: 6px 0
-    font-size: 20px
-    flex: 1
-  #login-button
-    font-size: 11px
-  a
-    margin: inherit
-    padding: 0
-    color: inherit
-    text-decoration: none
-    &:hover
-      color: darken($header-color, 10%)
-  .icon-button
+    width: 100%
     height: 100%
+    display: flex
+    div > * 
+      display: inline-block
+      vertical-align: text-bottom;
+    h1
+      font-size: 20px
+      flex: 1
+    #login-button
+      font-size: 11px
+  div:nth-child(2)
+    @include centering(600px)
+    position: relative
+a
+  margin: inherit
+  padding: 0
+  color: inherit
+  text-decoration: none
+  &:hover
+    color: darken($header-color, 10%)
+.icon-button
+  height: 100%
+  width: auto
+  cursor: pointer
+  img
+    border-radius: 2px
+    padding: 2px
+    height: calc(100% - 4px)
     width: auto
-    img
-      border-radius: 2px
-      padding: 2px
-      height: calc(100% - 4px)
-      width: auto
-
 header + * 
   margin-top: $header-height + 4px
