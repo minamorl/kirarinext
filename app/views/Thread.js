@@ -67,7 +67,7 @@ export default class ThreadComponent extends Component {
         if(this.state.comments.length != 0)
           last_fetched_id = this.state.comments[this.state.comments.length - 1]["id"] 
         this.client.fetchThread(this.props.name, last_fetched_id).then((res) => {
-          const comments = res["results"]
+          const comments = res["results"]["comments"]
           this.setState({
             comments: [...this.state.comments, ...comments]
           })
@@ -75,7 +75,7 @@ export default class ThreadComponent extends Component {
         })
       } else {
         this.client.fetchThread(this.props.name).then((res) => {
-          const comments = res["results"]
+          const comments = res["results"]["comments"]
           this.setState({
             comments: comments
           })

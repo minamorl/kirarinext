@@ -37,15 +37,22 @@ export default class Kirari {
         this.user = null
         this.logged_in = false
         Cookies.remove('user')
-      }
-    }
+      } }
     return instance
   }
   fetchThread(threadName, from=null) {
     if(from !== null) {
       return get("/api/comments", {q: threadName, from: from})
+        .then((res) => {
+          if (!res.results.auth) this.remove_user_cookies()
+          return res
+        })
     }
     return get("/api/comments", {q: threadName})
+      .then((res) => {
+        if (!res.results.auth) this.remove_user_cookies()
+        return res
+      })
   }
   comment(body) {
     return post("/api/comments", {body: body})
@@ -53,7 +60,7 @@ export default class Kirari {
   signin(username, password) {
     return post("/api/users", {username: username, password: password})
       .then((res) => {
-        if(res.results.auth === "False") {
+        if(!res.results.auth) {
           return res
         }
         this.user = res.results.user
@@ -62,10 +69,13 @@ export default class Kirari {
         return res
       })
   }
-  signout() {
+  remove_user_cookies() {
     this.logged_in = false
     delete this.user
     Cookies.remove('user')
+  }
+  signout() {
+    this.remove_user_cookies()
     return get("/api/signout")
   }
   update_icon() {
