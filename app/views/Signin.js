@@ -6,7 +6,11 @@ const post = (e) => {
     let client = new Kirari()
     const username = document.getElementById("form-username").value
     const password = document.getElementById("form-password").value
-    client.signin(username, password).then(() => {
+    client.signin(username, password).then((res) => {
+      if (res.results.message) {
+        document.getElementById("signin-message").innerHTML = res.results.message
+        return false
+      }
       location.hash = "#"
     })
     e.preventDefault()
@@ -24,6 +28,7 @@ const Signin = () => { return (
       </div>
       <input type="submit" value="ログイン"/>
     </form>
+    <div id="signin-message"></div>
   </div>
 )}
 export default Signin

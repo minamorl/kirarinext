@@ -60,7 +60,7 @@ export default class Kirari {
   signin(username, password) {
     return post("/api/users", {username: username, password: password})
       .then((res) => {
-        if(!res.results.auth) {
+        if(res.results.message !== undefined) {
           return res
         }
         this.user = res.results.user
