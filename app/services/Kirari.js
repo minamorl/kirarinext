@@ -10,6 +10,18 @@ const get = (endpoint, json) => {
     return response.json()
   })
 }
+const del = (endpoint) => {
+  return fetch(endpoint, {
+      method: "DELETE",
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then((response) => {
+      return response.json()
+    })
+}
 const post = (endpoint, json) => {
   return fetch(endpoint, {
       method: "POST",
@@ -83,5 +95,11 @@ export default class Kirari {
         this.user = res.results.user
         Cookies.set("user", JSON.stringify(this.user), { expires: 7 })
     })
+  }
+  create_favorite(id) {
+    return post("/api/favorites/" + id)
+  }
+  delete_favorite(id) {
+    return del("/api/favorites/" + id)
   }
 }

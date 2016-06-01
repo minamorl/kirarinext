@@ -3,6 +3,19 @@ import React, {Component} from "react"
 import Kirari from "../services/Kirari"
 
 const CommentComponent = (props) => {
+  let favoriteClick = (e) => {
+    let client = new Kirari()
+    if (props.comment.is_favorited === false) {
+      props.comment.favorite_count = (Number(props.comment.favorite_count) + 1)
+      client.create_favorite(props.comment.id)
+    } else {
+      props.comment.favorite_count = (Number(props.comment.favorite_count) - 1)
+      client.delete_favorite(props.comment.id)
+    }
+    props.comment.is_favorited = !props.comment.is_favorited
+    console.log("is_favorited:" + props.comment.is_favorited)
+  }
+
   return <li>
     <div className="author-image">
       <img src={props.comment.author.avatar} alt="Author image" />
@@ -13,6 +26,7 @@ const CommentComponent = (props) => {
         <div className="comment-id">#{props.comment.id}</div>
         <div className="comment-author-name">{props.comment.author.name}</div>
         <div className="comment-created-at">@{props.comment.created_at}</div>
+        <div className="comment-favorite-count" onClick={favoriteClick}>: {props.comment.favorite_count}</div>
       </div>
     </div>
   </li>
