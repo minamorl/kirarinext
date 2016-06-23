@@ -54,6 +54,14 @@ ul.thread
           text-align: right
           &:before
             content: "#"
+        .comment-favorite-count
+          color: rgb(102, 101, 101)
+          cursor: pointer
+          &:hover
+            color: rgb(152, 10, 10)
+        .comment-favorite-count.clicked
+            color: rgb(152, 10, 10)
+
 #comment
   @include centering(600px)
   padding: 4px 4px

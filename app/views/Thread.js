@@ -2,22 +2,31 @@ import React, {Component} from "react"
 
 import Kirari from "../services/Kirari"
 
+const FavoriteButton = (props) => {
+
+}
 const CommentComponent = (props) => {
   let favoriteClick = (e) => {
     let client = new Kirari()
-    if (props.comment.is_favorited === false) {
-      props.comment.favorite_count = (Number(props.comment.favorite_count) + 1)
-      client.create_favorite(props.comment.id)
-    } else {
-      props.comment.favorite_count = (Number(props.comment.favorite_count) - 1)
-      client.delete_favorite(props.comment.id)
+    if (client.logged_in) {
+      if (props.comment.is_favorited === false) {
+        props.comment.favorite_count = (Number(props.comment.favorite_count) + 1)
+        client.create_favorite(props.comment.id)
+      } else {
+        props.comment.favorite_count = (Number(props.comment.favorite_count) - 1)
+        client.delete_favorite(props.comment.id)
+      }
+      props.comment.is_favorited = !props.comment.is_favorited
     }
-    props.comment.is_favorited = !props.comment.is_favorited
-    console.log("is_favorited:" + props.comment.is_favorited)
+  }
+  let click_color = () => {
+    if (props.comment.is_favorited)
+      return "comment-favorite-count clicked"
+    return "comment-favorite-count"
   }
 
   return <li>
-    <div className="author-image">
+   <div className="author-image">
       <img src={props.comment.author.avatar} alt="Author image" />
     </div>
     <div className="comment">
@@ -26,7 +35,8 @@ const CommentComponent = (props) => {
         <div className="comment-id">#{props.comment.id}</div>
         <div className="comment-author-name">{props.comment.author.name}</div>
         <div className="comment-created-at">@{props.comment.created_at}</div>
-        <div className="comment-favorite-count" onClick={favoriteClick}>: {props.comment.favorite_count}</div>
+        <div className={click_color()} onClick={favoriteClick}>: {props.comment.favorite_count}favs<span className="octicon octicon-star"></span></div>
+        
       </div>
     </div>
   </li>

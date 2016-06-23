@@ -27,7 +27,8 @@ module.exports = {
       {
         test: /\.sass$/,
         loaders: ["style", "css", "sass"]
-      }
+      },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)/, loader: 'url-loader?limit=100000' }
     ]
   },
   devServer: {
